@@ -11,24 +11,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-- name: Deploy to STAGE (/www/stage) when on stage
-  if: ${{ github.ref == 'refs/heads/stage' }}
-  uses: SamKirkland/FTP-Deploy-Action@4.3.0
-  with:
-    server: ${{ secrets.OVH_FTP_HOST }}
-    username: ${{ secrets.OVH_FTP_USER }}
-    password: ${{ secrets.OVH_FTP_PASS }}
-    protocol: ftp
-    port: 21
-    security: loose
-    local-dir: ./
-    server-dir: /www/stage/
-    dangerous-clean-slate: true
-    exclude: |
-      **/.git*
-      **/.github/**
+      # Déploiement PROD -> /www/
+      - name: Deploy to PROD (/www) when on main
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.OVH_FTP_HOST }}
+          username: ${{ secrets.OVH_FTP_USER }}
+          password: ${{ secrets.OVH_FTP_PASS }}
+          protocol: ftp
+          port: 21
+          security: loose
+          local-dir: ./
+          server-dir: /www/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.github/**
 
-
+      # Déploiement STAGE -> /www/stage/
       - name: Deploy to STAGE (/www/stage) when on stage
         if: ${{ github.ref == 'refs/heads/stage' }}
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -41,7 +42,7 @@ jobs:
           security: loose
           local-dir: ./
           server-dir: /www/stage/
-          dangerous-clean-slate: false
+          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.github/**
