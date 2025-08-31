@@ -1,0 +1,26 @@
+name: Deploy to OVH (static)
+
+on:
+  push:
+    branches: [ "main", "stage" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTPS to OVH
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.OVH_FTP_HOST }}
+          username: ${{ secrets.OVH_FTP_USER }}
+          password: ${{ secrets.OVH_FTP_PASS }}
+          protocol: ftps
+          local-dir: ./
+          server-dir: ${{ github.ref == 'refs/heads/main' && '/www/' || '/www/stage/' }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.github/**
