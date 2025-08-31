@@ -18,7 +18,9 @@ jobs:
           server: ${{ secrets.OVH_FTP_HOST }}
           username: ${{ secrets.OVH_FTP_USER }}
           password: ${{ secrets.OVH_FTP_PASS }}
-          protocol: ftps
+          protocol: ftp
+          port: 21
+          security: explicit
           local-dir: ./
           server-dir: /www/
           dangerous-clean-slate: false
@@ -33,11 +35,12 @@ jobs:
           server: ${{ secrets.OVH_FTP_HOST }}
           username: ${{ secrets.OVH_FTP_USER }}
           password: ${{ secrets.OVH_FTP_PASS }}
-          protocol: ftps
+          protocol: ftp
+          port: 21
+          security: explicit
           local-dir: ./
           server-dir: /www/stage/
           dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.github/**
-
