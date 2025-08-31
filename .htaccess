@@ -1,0 +1,11 @@
+DirectoryIndex index.html
+
+# Fallback pour les apps type SPA (Nuxt, React, Vue…)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /stage/
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /stage/index.html [L]
+</IfModule>
