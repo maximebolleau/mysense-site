@@ -11,7 +11,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy via FTPS to OVH
+      - name: Deploy to PROD (/www) when on main
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: SamKirkland/FTP-Deploy-Action@v4
         with:
           server: ${{ secrets.OVH_FTP_HOST }}
@@ -19,8 +20,24 @@ jobs:
           password: ${{ secrets.OVH_FTP_PASS }}
           protocol: ftps
           local-dir: ./
-          server-dir: ${{ github.ref == 'refs/heads/main' && '/www/' || '/www/stage/' }}
+          server-dir: /www/
           dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.github/**
+
+      - name: Deploy to STAGE (/www/stage) when on stage
+        if: ${{ github.ref == 'refs/heads/stage' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.OVH_FTP_HOST }}
+          username: ${{ secrets.OVH_FTP_USER }}
+          password: ${{ secrets.OVH_FTP_PASS }}
+          protocol: ftps
+          local-dir: ./
+          server-dir: /www/stage/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.github/**
+
