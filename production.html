@@ -1,0 +1,66 @@
+<!doctype html><html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SËNSE — Creative Production</title>
+<link rel="icon" href="/favicon.ico">
+<meta name="description" content="Direction artistique, tournage, montage, motion design et 3D au service de la performance social.">
+<style>
+:root{--bg:#000;--fg:#fff;--muted:#cfcfcf;--border:rgba(255,255,255,.14)}
+*{box-sizing:border-box}html,body{margin:0;background:#000;color:#fff;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:1100px;margin:auto;padding:24px}
+h1{font-size:clamp(36px,6vw,72px);line-height:1;margin:18px 0 8px}
+p{color:#cfcfcf}
+.grid{display:grid;gap:16px}
+.cols{grid-template-columns:1.2fr .8fr}
+@media(max-width:900px){.cols{grid-template-columns:1fr}}
+.block{background:linear-gradient(180deg,#1c1c1c,#111);border:1px solid var(--border);border-radius:18px;padding:18px}
+.badge{display:inline-block;border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:12px;opacity:.9}
+.list li{margin:6px 0}
+.thumb{aspect-ratio:16/9;background:#0d0d0d;border:1px solid var(--border);border-radius:12px;display:grid;place-items:center;color:#888}
+.reveal{opacity:0;transform:translateY(12px);transition:.5s ease}.reveal.in{opacity:1;transform:translateY(0)}
+</style>
+</head><body>
+<div class="wrap">
+  <a class="badge" href="/">← Retour accueil</a>
+  <h1 class="reveal">Creative Production</h1>
+  <p class="reveal">Nous produisons des contenus pensés pour la conversion : formats courts, montage nerveux, hooks testés, et déclinaisons multi-réseaux.</p>
+
+  <div class="grid cols">
+    <div class="block reveal">
+      <h3>Capacités</h3>
+      <ul class="list">
+        <li>Direction artistique & brand design</li>
+        <li>Tournage multi-setup (studio / in-situ)</li>
+        <li>Montage & motion design (vertical-first)</li>
+        <li>3D & compositing léger pour ads</li>
+        <li>Packshots & product demos</li>
+      </ul>
+    </div>
+    <div class="block reveal">
+      <h3>Showcases</h3>
+      <div class="thumb">Intégrer un showreel / cover</div>
+    </div>
+  </div>
+
+  <div class="grid" style="margin-top:16px">
+    <div class="block reveal">
+      <h3>Pipeline</h3>
+      <ol>
+        <li>Brief & moodboard (DA, références)</li>
+        <li>Script & boards (hooks/CTA)</li>
+        <li>Shoot & post-prod</li>
+        <li>Exports multi-placements (TikTok/Reels/Stories)</li>
+        <li>QA créative + conformité plateformes</li>
+      </ol>
+    </div>
+    <div class="block reveal">
+      <h3>Qualité & Perf</h3>
+      <p>Nous lions systématiquement QA créative et performance media : variants A/B, itérations hebdo, et lecture des signaux (hook rate, hold, CTR).</p>
+    </div>
+  </div>
+</div>
+<script>
+const els=[...document.querySelectorAll('.reveal')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.35});
+els.forEach(el=>io.observe(el));
+</script>
+</body></html>
