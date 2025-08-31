@@ -13,7 +13,7 @@ jobs:
 
       - name: Deploy to PROD (/www) when on main
         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ${{ secrets.OVH_FTP_HOST }}
           username: ${{ secrets.OVH_FTP_USER }}
@@ -28,7 +28,7 @@ jobs:
 
       - name: Deploy to STAGE (/www/stage) when on stage
         if: ${{ github.ref == 'refs/heads/stage' }}
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ${{ secrets.OVH_FTP_HOST }}
           username: ${{ secrets.OVH_FTP_USER }}
